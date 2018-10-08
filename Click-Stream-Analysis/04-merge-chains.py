@@ -5,30 +5,20 @@ Spyder Editor
 This is a temporary script file.
 """
 import pandas as pd
-from utilities import *
-
-def appendflag(df, flag):
-    '''
-    function to append flag to purchase chain
-    '''
-    for i in range(len(df)):
-        aa = eval(df.channel[i])
-        aa.append(flag)
-        df.channel[i] = aa
-        
-    return (df)
 
 #successful purchases    
 df1 = pd.read_csv('Markov.csv', header=None)
-df1.columns = ['channel', 'count']
-df1 = appendflag(df1, 'buy')
+df1.columns = ['Channel', 'Count']
 print (df1.head())
 
 #unsuccessful purchases
 df2 = pd.read_csv('NonPurchaseMarkov.csv', header=None)
-df2.columns = ['channel', 'count']
-df2 = appendflag(df2, 'null')
+df2.columns = ['Channel', 'NonConversionCount']
 print (df2.head())
 
-df = df1.append(df2)
-df.to_csv('FinalMarkov.csv')
+df3 = pd.merge(df1, df2, how='outer', on = ['Channel'])
+#replace nas with zero
+df3['Count'] = df3['Count'].fillna(0)
+df3['NonConversionCount'] = df3['NonConversionCount'].fillna(0)
+df3.head()
+df3.to_csv('MergedChains.csv')
