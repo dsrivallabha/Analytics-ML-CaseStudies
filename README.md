@@ -6,4 +6,4 @@ Code will be in Python and R.
 
 A data scientist's view of solving business problems.
 
-Sri Vallabha.
+Sri Vallabha Deevi.
