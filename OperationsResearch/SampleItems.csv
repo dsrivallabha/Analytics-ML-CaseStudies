@@ -1,0 +1,5 @@
+"Item Name","QtyOfMolds","SandWt","PourWt","UnitsRequired","MarginPerItem","CoolingDays"
+"Main frame",5,120,146,20,5632,3
+"Upper Frame",10,53,72,48,3201,2
+"Vestas PLC",3,153,201,17,8973,4
+"SGRE Stage2",40,34,49,30,2007,1
