@@ -1,0 +1,134 @@
+{
+  "seed": 42,
+  "time_horizon": 1913,
+  "nodes": [
+    {
+      "id": "Supplier",
+      "type": "supplier",
+      "infinite_supply": true,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 0
+      }
+    },
+    {
+      "id": "W1",
+      "type": "warehouse",
+      "initial_inventory": 1736,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 1736
+      }
+    },
+    {
+      "id": "W2",
+      "type": "warehouse",
+      "initial_inventory": 1849,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 1849
+      }
+    },
+    {
+      "id": "R1",
+      "type": "retailer",
+      "initial_inventory": 588,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 588
+      }
+    },
+    {
+      "id": "R2",
+      "type": "retailer",
+      "initial_inventory": 481,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 481
+      }
+    },
+    {
+      "id": "R3",
+      "type": "retailer",
+      "initial_inventory": 1357,
+      "policy": {
+        "type": "base_stock",
+        "base_stock_level": 1357
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Supplier",
+      "to": "W1",
+      "lead_time": {
+        "type": "deterministic",
+        "value": 5
+      }
+    },
+    {
+      "from": "Supplier",
+      "to": "W2",
+      "lead_time": {
+        "type": "deterministic",
+        "value": 6
+      }
+    },
+    {
+      "from": "W1",
+      "to": "R1",
+      "lead_time": {
+        "type": "deterministic",
+        "value": 2
+      }
+    },
+    {
+      "from": "W1",
+      "to": "R2",
+      "lead_time": {
+        "type": "deterministic",
+        "value": 3
+      }
+    },
+    {
+      "from": "W2",
+      "to": "R3",
+      "lead_time": {
+        "type": "deterministic",
+        "value": 4
+      }
+    }
+  ],
+  "demand": [
+    {
+      "node": "R1",
+      "generator": {
+        "type": "csv",
+        "path": "dataset/m5_dataset/processed/retailers/R1.csv",
+        "date_col": "date",
+        "qty_col": "quantity",
+        "strategy": "wrap"
+      }
+    },
+    {
+      "node": "R2",
+      "generator": {
+        "type": "csv",
+        "path": "dataset/m5_dataset/processed/retailers/R2.csv",
+        "date_col": "date",
+        "qty_col": "quantity",
+        "strategy": "wrap"
+      }
+    },
+    {
+      "node": "R3",
+      "generator": {
+        "type": "csv",
+        "path": "dataset/m5_dataset/processed/retailers/R3.csv",
+        "date_col": "date",
+        "qty_col": "quantity",
+        "strategy": "wrap"
+      }
+    }
+  ]
+}

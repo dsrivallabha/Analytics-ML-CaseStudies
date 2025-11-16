@@ -1,0 +1,42 @@
+{
+  "seed": 42,
+  "time_horizon": 120,
+
+  "nodes": [
+    { "id": "Supplier",  "type": "supplier",  "infinite_supply": true,
+      "policy": { "type": "base_stock", "base_stock_level": 0 } },
+
+    { "id": "Warehouse", "type": "warehouse", "initial_inventory": 180,
+      "policy": { "type": "order_up_to", "R": 7, "S": 260, "phase_offset": 0 } },
+
+    { "id": "R1",  "type": "retailer",  "initial_inventory": 70,
+      "policy": { "type": "order_up_to", "R": 7, "S": 120, "phase_offset": 0 } },
+
+    { "id": "R2",  "type": "retailer",  "initial_inventory": 60,
+      "policy": { "type": "order_up_to", "R": 7, "S": 110, "phase_offset": 0 } }
+  ],
+
+  "edges": [
+    { "from": "Supplier",  "to": "Warehouse",
+      "lead_time": { "type": "deterministic", "value": 2 } },
+
+    { "from": "Warehouse", "to": "R1",
+      "lead_time": { "type": "deterministic", "value": 1 }, "share": 0.8 },
+    { "from": "Warehouse", "to": "R1",
+      "lead_time": { "type": "deterministic", "value": 3 }, "share": 0.2 },
+
+    { "from": "Warehouse", "to": "R2",
+      "lead_time": { "type": "deterministic", "value": 2 } }
+  ],
+
+  "demand": [
+    { "node": "R1",
+      "generator": { "type": "csv",
+        "manifest": "dataset/demand/manifest.json",
+        "store_id": 1, "strategy": "wrap" } },
+    { "node": "R2",
+      "generator": { "type": "csv",
+        "manifest": "dataset/demand/manifest.json",
+        "store_id": 2, "strategy": "wrap" } }
+  ]
+}

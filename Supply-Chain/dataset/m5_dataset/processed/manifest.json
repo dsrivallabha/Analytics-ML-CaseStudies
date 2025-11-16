@@ -1,0 +1,16 @@
+{
+  "files": {
+    "CA_1": "CA_1.csv",
+    "CA_2": "CA_2.csv",
+    "CA_3": "CA_3.csv",
+    "CA_4": "CA_4.csv",
+    "TX_1": "TX_1.csv",
+    "TX_2": "TX_2.csv",
+    "TX_3": "TX_3.csv",
+    "WI_1": "WI_1.csv",
+    "WI_2": "WI_2.csv",
+    "WI_3": "WI_3.csv"
+  },
+  "date_col": "date",
+  "qty_col": "demand"
+}

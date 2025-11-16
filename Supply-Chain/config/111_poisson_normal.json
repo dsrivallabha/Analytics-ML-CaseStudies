@@ -1,0 +1,25 @@
+{
+  "seed": 123,       
+  "time_horizon": 40,
+  "nodes": [
+    { "id":"Supplier","type":"supplier","infinite_supply":true,
+      "policy":{"type":"base_stock","base_stock_level":0} },
+
+    { "id":"Warehouse","type":"warehouse","initial_inventory":80,
+      "policy":{"type":"base_stock","base_stock_level":125} },
+
+    { "id":"Retailer","type":"retailer","initial_inventory":40,
+      "policy":{"type":"base_stock","base_stock_level":65} }
+  ],
+  "edges": [
+    { "from":"Supplier","to":"Warehouse",
+      "lead_time":{"type":"deterministic","value":2} },
+
+    { "from":"Warehouse","to":"Retailer",
+      "lead_time":{"type":"normal_int","mean":1.5,"std":0.7, "seed": 987} }
+  ],
+  "demand": [
+    { "node":"Retailer",
+      "generator":{"type":"poisson","lam":9.5, "seed": 555} }
+  ]
+}
